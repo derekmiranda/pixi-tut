@@ -1,7 +1,9 @@
 // aliases
 let Application = PIXI.Application,
   loader = PIXI.loader,
+  Rectangle = PIXI.Rectangle,
   resources = PIXI.loader.resources,
+  TextureCache = PIXI.utils.TextureCache,
   Sprite = PIXI.Sprite;
 
 let app = new Application({
@@ -28,35 +30,23 @@ function initApp() {
 
 // this function loads images into the texture cache
 function load() {
-  loader.add("images/pixelme.png").load(setup);
+  loader.add("images/tileset.png").load(setup);
 }
 
 function setup() {
-  let sprite = new Sprite(loader.resources["images/pixelme.png"].texture);
+  let texture = TextureCache['images/tileset.png']
 
-  sprite.anchor.x = 0.5
-  sprite.anchor.y = 0.5
+  // define position and size of sub-image frame in tilset
+  let rectangle = new Rectangle(192, 128, 64, 64);
+  texture.frame = rectangle
 
-  sprite.x = 200
-  sprite.y = 200
+  let rocket = new Sprite(texture)
 
-  // sprite.width = 300
-  // sprite.height = 100
+  rocket.x = 60
+  rocket.y = 60
 
-  // sprite.scale.x = 2
-  // sprite.scale.y = 0.5
-
-  sprite.scale.set(2, 0.5)
-
-  sprite.rotation = Math.PI / 2
-
-  // add sprite to stage
-  app.stage.addChild(sprite);
-
-  // to remove sprite
-  // app.stage.removeChild(sprite)
-  // OR
-  // sprite.visible = false
+  app.stage.addChild(rocket)
+  app.renderer.render(app.stage)
 }
 
 initApp();
