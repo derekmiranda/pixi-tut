@@ -1,4 +1,3 @@
 # Pixi.js Learning
 
-Currently at [this step](https://github.com/kittykatattack/learningPixi#using-a-texture-atlas).
-
+Currently at [this step](https://github.com/kittykatattack/learningPixi#case-study-treasure-hunter).
